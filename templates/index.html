@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agenda de Contatos</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/4.5.2/flatly/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5">Lista de Contatos</h1>
+        <a href="{{ url_for('add_contact') }}" class="btn btn-primary mb-3">Adicionar Contato</a>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Telefone</th>
+                    <th>Email</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for contato in contatos %}
+                <tr>
+                    <td>{{ contato.nome }}</td>
+                    <td>{{ contato.telefone }}</td>
+                    <td>{{ contato.email }}</td>
+                    <td>
+                        <a href="{{ url_for('edit_contact', idpessoa=contato.idpessoa) }}" class="btn btn-warning btn-sm">Editar</a>
+                        <a href="{{ url_for('delete_contact', idpessoa=contato.idpessoa) }}" class="btn btn-danger btn-sm">Excluir</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
